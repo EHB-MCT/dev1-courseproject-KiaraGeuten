@@ -19,9 +19,6 @@ for (let i = 0; i < 100; i++) {
   }
 }
 
-DEV();
-// KG();
-
 function KG() {
   context.fillStyle = "white";
   // vert lijnen; k,g
@@ -78,4 +75,12 @@ function DEV() {
     context.fillRect(1110 + x * 30, 570 + x * 30, 30, 30);
     context.fillRect(1320 - x * 30, 540 + x * 30, 30, 30);
   }
+}
+// switch between dev en kg
+if (localStorage.getItem("refresh") === "KG") {
+  KG();
+  localStorage.setItem("refresh", "DEV");
+} else {
+  DEV();
+  localStorage.setItem("refresh", "KG");
 }
