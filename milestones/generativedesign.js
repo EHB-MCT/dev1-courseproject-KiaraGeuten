@@ -19,7 +19,9 @@ for (let i = 0; i < 100; i++) {
   }
 }
 
+DEV();
 // KG();
+
 function KG() {
   context.fillStyle = "white";
   // vert lijnen; k,g
@@ -42,4 +44,38 @@ function KG() {
   // horizon klein
   context.fillRect(1140, 480, 30, 30);
   context.fillRect(1110, 480, 30, 30);
+}
+
+function DEV() {
+  context.fillStyle = "white";
+  // verticale
+  for (let x = 0; x < 15; x++) {
+    context.fillRect(390, 240 + x * 30, 30, 30);
+    context.fillRect(750, 240 + x * 30, 30, 30);
+  }
+  // korte ver D
+  for (let x = 0; x < 13; x++) {
+    context.fillRect(600, 270 + x * 30, 30, 30);
+  }
+  //kortste vert V
+  for (let x = 0; x < 11; x++) {
+    context.fillRect(1080, 240 + x * 30, 30, 30);
+    context.fillRect(1320, 240 + x * 30, 30, 30);
+  }
+  // horizonI
+  for (let x = 0; x < 7; x++) {
+    //E
+    context.fillRect(750 + x * 30, 240, 30, 30);
+    context.fillRect(750 + x * 30, 450, 30, 30);
+    context.fillRect(750 + x * 30, 660, 30, 30);
+    //D
+    context.fillRect(390 + x * 30, 240, 30, 30);
+    context.fillRect(390 + x * 30, 660, 30, 30);
+  }
+
+  // diag
+  for (let x = 0; x < 4; x++) {
+    context.fillRect(1110 + x * 30, 570 + x * 30, 30, 30);
+    context.fillRect(1320 - x * 30, 540 + x * 30, 30, 30);
+  }
 }
