@@ -4,7 +4,7 @@ let width = context.canvas.width;
 let height = context.canvas.height;
 let size = 30;
 
-//background
+//draw background
 // kleuren
 let colors = ["magenta", "blue", "cyan", "green", "yellow", "orange", "red"];
 
@@ -21,18 +21,16 @@ for (let i = 0; i < 100; i++) {
   }
 }
 
-//letters
+//letter posities tov midden
 let heightLetters = 240;
 let middleX = width / 2;
 let offsetK = middleX - 253.5;
 let offsetG = middleX + 46.5;
-
 let offsetE = middleX - 103.5;
-
 let offsetD = middleX - 493.5;
-
 let offsetV = middleX + 256.5;
 
+//teken kg
 function KG() {
   context.fillStyle = "white";
   // vert lijnen; k,g
@@ -55,7 +53,7 @@ function KG() {
   // horizon klein
   context.fillRect(middleX + 196.5, 480, size, size);
 }
-
+// teken dev
 function DEV() {
   context.fillStyle = "white";
   // verticalen
