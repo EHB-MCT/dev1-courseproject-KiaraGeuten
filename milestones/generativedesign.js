@@ -1,8 +1,10 @@
 import context from "../scripts/context.js";
-import * as Utils from "../scripts/utils.js";
+
+let width = context.canvas.width;
+let height = context.canvas.height;
+let size = 30;
 
 //background
-
 // kleuren
 let colors = ["magenta", "blue", "cyan", "green", "yellow", "orange", "red"];
 
@@ -15,65 +17,76 @@ for (let i = 0; i < 100; i++) {
   context.fillStyle = colors[colorIndex];
   // hoeveel in 1 diagonaal
   for (let j = 0; j < 100; j++) {
-    context.fillRect(2700 - j * 30, j * 30 - i * 30, 30, 30);
+    context.fillRect(2700 - j * size, j * size - i * size, size, size);
   }
 }
+
+//letters
+let heightLetters = 240;
+let middleX = width / 2;
+let offsetK = middleX - 253.5;
+let offsetG = middleX + 46.5;
+
+let offsetE = middleX - 103.5;
+
+let offsetD = middleX - 493.5;
+
+let offsetV = middleX + 256.5;
 
 function KG() {
   context.fillStyle = "white";
   // vert lijnen; k,g
   for (let x = 0; x < 15; x++) {
-    context.fillRect(600, 240 + x * 30, 30, 30);
-    context.fillRect(990, 240 + x * 30, 30, 30);
+    context.fillRect(offsetK, heightLetters + x * size, size, size);
+    context.fillRect(offsetG, heightLetters + x * size, size, size);
   }
   // lijn omhoog + lijn omlaag K
   for (let x = 0; x < 8; x++) {
-    context.fillRect(600 + x * 30, 450 + x * 30, 30, 30);
-    context.fillRect(600 + x * 30, 450 - x * 30, 30, 30);
+    context.fillRect(offsetK + x * size, 450 + x * size, size, size);
+    context.fillRect(offsetK + x * size, 450 - x * size, size, size);
   }
 
   // hroizontale lijnen G + verticale halve van g
   for (let x = 0; x < 7; x++) {
-    context.fillRect(990 + x * 30, 240, 30, 30);
-    context.fillRect(990 + x * 30, 660, 30, 30);
-    context.fillRect(1170, 660 - x * 30, 30, 30);
+    context.fillRect(offsetG + x * size, heightLetters, size, size);
+    context.fillRect(offsetG + x * size, 660, size, size);
+    context.fillRect(middleX + 226.5, 660 - x * size, size, size);
   }
   // horizon klein
-  context.fillRect(1140, 480, 30, 30);
-  context.fillRect(1110, 480, 30, 30);
+  context.fillRect(middleX + 196.5, 480, size, size);
 }
 
 function DEV() {
   context.fillStyle = "white";
-  // verticale
+  // verticalen
   for (let x = 0; x < 15; x++) {
-    context.fillRect(390, 240 + x * 30, 30, 30);
-    context.fillRect(750, 240 + x * 30, 30, 30);
+    context.fillRect(offsetE, heightLetters + x * size, size, size);
+    context.fillRect(offsetD, heightLetters + x * size, size, size);
   }
   // korte ver D
   for (let x = 0; x < 13; x++) {
-    context.fillRect(600, 270 + x * 30, 30, 30);
+    context.fillRect(middleX - 253.5, 270 + x * size, size, size);
   }
-  //kortste vert V
+  //vert V
   for (let x = 0; x < 11; x++) {
-    context.fillRect(1080, 240 + x * 30, 30, 30);
-    context.fillRect(1320, 240 + x * 30, 30, 30);
+    context.fillRect(offsetV, heightLetters + x * size, size, size);
+    context.fillRect(offsetV + 240, heightLetters + x * size, size, size);
   }
-  // horizonI
-  for (let x = 0; x < 7; x++) {
+  // horizontalen
+  for (let x = 0; x < 8; x++) {
     //E
-    context.fillRect(750 + x * 30, 240, 30, 30);
-    context.fillRect(750 + x * 30, 450, 30, 30);
-    context.fillRect(750 + x * 30, 660, 30, 30);
+    context.fillRect(offsetE + x * size, heightLetters, size, size);
+    context.fillRect(offsetE + x * size, 450, size, size);
+    context.fillRect(offsetE + x * size, 660, size, size);
     //D
-    context.fillRect(390 + x * 30, 240, 30, 30);
-    context.fillRect(390 + x * 30, 660, 30, 30);
+    context.fillRect(offsetD + x * size, heightLetters, size, size);
+    context.fillRect(offsetD + x * size, 660, size, size);
   }
 
   // diag
   for (let x = 0; x < 4; x++) {
-    context.fillRect(1110 + x * 30, 570 + x * 30, 30, 30);
-    context.fillRect(1320 - x * 30, 540 + x * 30, 30, 30);
+    context.fillRect(offsetV + 30 + x * size, 570 + x * size, size, size);
+    context.fillRect(offsetV + 240 - x * size, 540 + x * size, size, size);
   }
 }
 // switch between dev en kg
@@ -84,3 +97,8 @@ if (localStorage.getItem("refresh") === "KG") {
   DEV();
   localStorage.setItem("refresh", "KG");
 }
+
+context.fillStyle = "black";
+context.fillRect(width / 2, 0, size, height);
+
+//  425.5 465.5
