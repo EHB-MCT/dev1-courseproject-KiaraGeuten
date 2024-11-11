@@ -97,8 +97,3 @@ if (localStorage.getItem("refresh") === "KG") {
   DEV();
   localStorage.setItem("refresh", "KG");
 }
-
-context.fillStyle = "black";
-context.fillRect(width / 2, 0, size, height);
-
-//  425.5 465.5
