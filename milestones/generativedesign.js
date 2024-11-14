@@ -24,6 +24,7 @@ for (let i = 0; i < 100; i++) {
 //letter posities tov midden
 let heightLetters = 240;
 let middleX = width / 2;
+// offset wisselen vr verplaatsing
 let offsetK = middleX - 253.5;
 let offsetG = middleX + 46.5;
 let offsetE = middleX - 103.5;
@@ -95,3 +96,5 @@ if (localStorage.getItem("refresh") === "KG") {
   DEV();
   localStorage.setItem("refresh", "KG");
 }
+
+//parameters meegeven: func kg(x,y,size) -> kg(10,20)
