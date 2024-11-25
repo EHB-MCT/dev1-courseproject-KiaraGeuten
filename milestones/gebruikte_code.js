@@ -1,4 +1,6 @@
-// https://cs50.ai/chat geraadpleegd op 8/11
+//this code was made ....
+// 8/11: https://cs50.ai/chat (ADD THE CHAT )
+// modifications made by Kiara Geuten
 
 let colors = ["", "", "", "", "", "", ""];
 let startIndex = Math.floor(Math.random() * colors.length);
