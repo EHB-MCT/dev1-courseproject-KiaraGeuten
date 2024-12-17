@@ -1,37 +1,46 @@
 import context from "../scripts/context.js";
-
 let width = context.canvas.width;
 let height = context.canvas.height;
-let size = 30;
 
 //draw background
-// kleuren
-let colors = ["magenta", "blue", "cyan", "green", "yellow", "orange", "red"];
-
-// Random start maken
+let size = width / 57;
+let colors = ["red", "orange", "yellow", "green", "cyan", "blue", "magenta"];
+// array to store square object
+let background = [];
+//random number with random begin color
 let startIndex = Math.floor(Math.random() * colors.length);
-// aantal diagonalen
-for (let i = 0; i < 100; i++) {
-  //kiest begin en zorgt vr herhaling
-  let colorIndex = (startIndex + i) % colors.length;
-  context.fillStyle = colors[colorIndex];
-  // hoeveel in 1 diagonaal
-  for (let j = 0; j < 100; j++) {
-    context.fillRect(2700 - j * size, j * size - i * size, size, size);
+
+//loop that creates an object for each square
+for (let i = 0; i < width / size; i++) {
+  let square = {
+    x: i * size,
+    y: 0,
+    colors: startIndex + i,
+  };
+  background.push(square);
+}
+//draws squares
+drawSquares();
+function drawSquares() {
+  //draws squares = length background array (= screenwidth)
+  for (let i = 0; i < background.length; i++) {
+    // draws squares = screenheight
+    for (let j = 0; j < height / size; j++) {
+      context.fillStyle = colors[(background[i].colors + j) % colors.length];
+      context.fillRect(background[i].x, background[i].y + j * size, size, size);
+    }
   }
 }
-
 // switch between dev en kg
 if (localStorage.getItem("refresh") === "KG") {
-  KG(150, 150);
+  KG(size * 20, size * 7, 30);
   localStorage.setItem("refresh", "DEV");
 } else {
-  DEV(300, 200);
+  DEV(size * 10, size * 7, 30);
   localStorage.setItem("refresh", "KG");
 }
-
 //teken kg
-function KG(Kposx, y) {
+function KG(Kposx, y, size) {
   let Gposx = Kposx + size * 10;
   context.fillStyle = "white";
   // vert lijnen; k,g
@@ -56,7 +65,7 @@ function KG(Kposx, y) {
   context.fillRect(Gposx + size * 5, y + size * 8, size, size);
 }
 // teken dev
-function DEV(Dposx, y) {
+function DEV(Dposx, y, size) {
   let Epos = Dposx + size * 14;
   let Vpos = Epos + size * 13;
   context.fillStyle = "white";
@@ -72,7 +81,7 @@ function DEV(Dposx, y) {
   //vert V
   for (let x = 0; x < 11; x++) {
     context.fillRect(Vpos, y + x * size, size, size);
-    context.fillRect(Vpos + 240, y + x * size, size, size);
+    context.fillRect(Vpos + size * 8, y + x * size, size, size);
   }
   // horizontalen
   for (let i = 0; i < 8; i++) {
