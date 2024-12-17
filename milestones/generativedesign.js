@@ -19,7 +19,7 @@ for (let i = 0; i < width / size; i++) {
   };
   background.push(square);
 }
-//draws squares
+// draws squares
 drawSquares();
 function drawSquares() {
   //draws squares = length background array (= screenwidth)
@@ -104,4 +104,21 @@ function DEV(Dposx, y, size) {
       size
     );
   }
+}
+
+// animate background
+//stop moving background if cursor
+signature();
+
+function signature() {
+  context.fillStyle = "white";
+  context.fillRect(size * 49, size * 23, size * 7, size * 7);
+  context.fillStyle = "#C17AD0";
+  context.fillRect(size * 51, size * 24, size, size);
+  context.fillRect(size * 53, size * 24, size, size);
+  context.fillRect(size * 54, size * 25, size, size * 5);
+  context.fillRect(size * 50, size * 25, size, size * 5);
+  context.fillRect(size * 53, size * 26, size, size);
+  context.fillRect(size * 51, size * 26, size, size);
+  context.fillRect(size * 52, size * 27, size, size);
 }
