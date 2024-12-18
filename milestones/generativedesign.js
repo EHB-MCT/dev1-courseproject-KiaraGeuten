@@ -1,4 +1,5 @@
 import context from "../scripts/context.js";
+import * as Utils from "../scripts/utils.js";
 let width = context.canvas.width;
 let height = context.canvas.height;
 
@@ -21,6 +22,8 @@ for (let i = 0; i < width / size; i++) {
 }
 // draws squares
 drawSquares();
+signature();
+update();
 function drawSquares() {
   //draws squares = length background array (= screenwidth)
   for (let i = 0; i < background.length; i++) {
@@ -107,9 +110,17 @@ function DEV(Dposx, y, size) {
 }
 
 // animate background
-//stop moving background if cursor
-signature();
 
+function update() {
+  context.fillStyle = "white";
+  context.fillRect(0, 0, width, height);
+  for (let i = 0; i < background.length; i++) {
+    background[i].colors++;
+  }
+  requestAnimationFrame(update);
+}
+
+//stop moving background if cursor
 function signature() {
   context.fillStyle = "white";
   context.fillRect(size * 49, size * 23, size * 7, size * 7);
