@@ -10,6 +10,7 @@ let stop = false;
 //var vr background
 let sizeBg = width / 57;
 let colors = ["red", "orange", "yellow", "green", "cyan", "blue", "magenta"];
+
 //random number with random begin color,this part pf the code was partially generated with cs50(OpenAI) on 8/11/2024
 let startIndex = Math.floor(Math.random() * colors.length);
 
