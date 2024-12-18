@@ -173,13 +173,14 @@ function signature() {
     sizeBgSP * 7
   );
   context.fillStyle = "#C17AD0";
-  //rij 1
+  //rij 1, links
   context.fillRect(
     width - sizeBgSP * 8,
     height - sizeBgSP * 7 + 2.5,
     sizeBgSP,
     sizeBgSP
   );
+  //rij 1, rechts
   context.fillRect(
     width - sizeBgSP * 6,
     height - sizeBgSP * 7 + 2.5,
