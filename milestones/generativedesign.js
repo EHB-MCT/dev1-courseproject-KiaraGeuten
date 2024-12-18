@@ -21,7 +21,6 @@ for (let i = 0; i < width / size; i++) {
   background.push(square);
 }
 // draws squares
-drawSquares();
 signature();
 update();
 function drawSquares() {
@@ -117,7 +116,8 @@ function update() {
   for (let i = 0; i < background.length; i++) {
     background[i].colors++;
   }
-  requestAnimationFrame(update);
+  drawSquares();
+  setTimeout(update, 200);
 }
 
 //stop moving background if cursor
