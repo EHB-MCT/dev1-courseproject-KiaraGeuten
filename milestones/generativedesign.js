@@ -11,6 +11,7 @@ let background = [];
 //random number with random begin color
 let startIndex = Math.floor(Math.random() * colors.length);
 
+let stop = false;
 //loop that creates an object for each square
 for (let i = 0; i < width / size; i++) {
   let square = {
@@ -22,7 +23,6 @@ for (let i = 0; i < width / size; i++) {
 }
 // draws squares
 signature();
-update();
 function drawSquares() {
   //draws squares = length background array (= screenwidth)
   for (let i = 0; i < background.length; i++) {
@@ -35,10 +35,8 @@ function drawSquares() {
 }
 // switch between dev en kg
 if (localStorage.getItem("refresh") === "KG") {
-  KG(size * 20, size * 7, 30);
   localStorage.setItem("refresh", "DEV");
 } else {
-  DEV(size * 10, size * 7, 30);
   localStorage.setItem("refresh", "KG");
 }
 //teken kg
@@ -109,21 +107,30 @@ function DEV(Dposx, y, size) {
 }
 
 // animate background
-
+update();
 function update() {
   context.fillStyle = "white";
   context.fillRect(0, 0, width, height);
+
   for (let i = 0; i < background.length; i++) {
     background[i].colors++;
   }
+
   drawSquares();
-  setTimeout(update, 200);
+  if (localStorage.getItem("refresh") === "KG") {
+    KG(size * 20, size * 7, 20);
+  } else {
+    DEV(size * 10, size * 7, 30);
+  }
+  if (!stop) {
+    setTimeout(update, 200);
+  }
 }
 
 //stop moving background if cursor
 function signature() {
   context.fillStyle = "white";
-  context.fillRect(size * 49, size * 23, size * 7, size * 7);
+  context.fillRect(size * 49, size * 23, size * 7, width - size * 7);
   context.fillStyle = "#C17AD0";
   context.fillRect(size * 51, size * 24, size, size);
   context.fillRect(size * 53, size * 24, size, size);
@@ -132,4 +139,18 @@ function signature() {
   context.fillRect(size * 53, size * 26, size, size);
   context.fillRect(size * 51, size * 26, size, size);
   context.fillRect(size * 52, size * 27, size, size);
+}
+
+window.onkeydown = stopBg;
+/**
+ *
+ * @param {KeyboardEvent*} e
+ */
+function stopBg(e) {
+  if (e.keyCode == 0 || e.keyCode == 32) {
+    stop = true;
+  } else {
+    stop = false;
+    setTimeout(update, 200);
+  }
 }
